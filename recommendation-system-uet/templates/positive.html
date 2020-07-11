@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie's Introduction System</title>
+    <!-- <link rel="stylesheet" media="all" href="{{ url_for('static', filename='css/index.css')}}"> -->
+    <!-- <script  src="{{ url_for('static', filename='css_image/script.js')}}" data-turbolinks-track="reload"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0px;
+            padding: 5px 15px;
+            background-color: black;
+        }
+        
+        .menu {
+            width: 250px;
+            height: 100vh;
+            border-right: 1px solid #231b1b;
+        }
+        
+        .menu-item {
+            color: white;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+        }
+        
+        .menu-item div {
+            border-bottom: 1px solid #231b1b;
+        }
+        
+        .menu-item div:hover {
+            background-color: #353030;
+            color: red;
+        }
+        
+        .content {
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .content-header {
+            height: 200px;
+            width: 100%;
+            background-image: url("./static/background-header.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 300px;
+        }
+        
+        .content-body {
+            display: flex;
+        }
+        
+        .classified {
+            color: white;
+            padding: 20px 0 20px 10px;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            height: 95px;
+        }
+        
+        .classified button {
+            background-color: black;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 2px solid #4caf50;
+            width: 200px;
+            margin-left: 5px;
+            border-radius: unset;
+        }
+        
+        .content-middle {
+            /* display: flex; */
+            width: 100%
+        }
+        
+        .content-item {
+            position: absolute;
+            left: 100px;
+        }
+        
+        .content-middle-item {
+            margin: 20px;
+            height: 310px;
+            width: 250px;
+            border: 1px solid #231b1b;
+            display: inline-block;
+        }
+        
+        .content-middle-item img {
+            height: 200px;
+            width: 250px;
+        }
+        
+        .action {
+            display: flex;
+        }
+        
+        .heart,
+        .detail {
+            border: none;
+            height: 40px;
+            width: 110px;
+            display: flex;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        
+        .heart {
+            background-color: #353030;
+            color: white;
+        }
+        
+        .detail {
+            background-color: #4CAF50;
+            color: white
+        }
+        
+        .heart:hover {
+            cursor: pointer;
+            background-color: #da190b;
+        }
+        
+        .detail:hover {
+            cursor: pointer;
+            background-color: #46a049;
+        }
+        
+        .heart .heart-icon {
+            margin-top: 6px;
+            height: 30px;
+            width: 30px;
+            background-image: url("./static/heart.png");
+            background-repeat: no-repeat;
+            background-size: 30px;
+        }
+        
+        .heart .heart-texture {
+            height: 20px;
+            line-height: 40px;
+            margin-left: 5px;
+        }
+        
+        .detail .detail-texture {
+            height: 20px;
+            line-height: 40px;
+            margin-left: 10px;
+        }
+        
+        .detail .detail-icon {
+            margin: 6px 0 0 5px;
+            height: 25px;
+            width: 25px;
+            background-image: url("./static/detail.png");
+            background-repeat: no-repeat;
+            background-size: 25px;
+            padding-right: 5px;
+        }
+        
+        .dialog-modal {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #808080;
+            opacity: 0.4;
+            height: 10000px;
+            width: 100%;
+            z-index: 2000;
+        }
+        
+        .dialog {
+            display: block;
+            width: 1240px;
+            height: 550px;
+            background-color: #fff;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            border-radius: 3px;
+        }
+        
+        .bg-light {
+            background-color: black!important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 50px; position: sticky; top: 0; z-index: 1000">
+        <a class="navbar-brand" href="#" style="color: white!important"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav" style="position: absolute; right: 10px">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:5000/home" style="color: white!important"><strong>Trang chủ</strong><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/survay" style="color: white!important"><strong>Khảo sát</strong></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000" style="color: white!important"><strong>Đăng nhập</strong></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="content-header">
+
+        </div>
+
+        <div class="content-body">
+            <div class="content-middle">
+                <div class="classified">
+                    <div style="display: flex; position: absolute; left: 100px;">
+                        <p style="margin-right: 10px;">Có thể bạn sẽ thích: </p>
+                        <p style="color: red;">(Incident Interesting Movies)</p>
+                    </div>
+                </div>
+                <div class="content-item ">
+                    {% for item in movie_names %}
+                    <div class="content-middle-item ">
+                        <img src="{{item.poster}}" alt=" ">
+                        <div style="color: aliceblue; font-weight: bold; font-size: 15px; width: 100%; text-align: center; margin: 5px 0 8px 0; height: 40px;">
+                            <p>{{item.title}}</p>
+                        </div>
+                        <div class="action" style="font-size: 14px; padding-left: 63px">
+
+                            <a href="{{item.detail}}" target="_blank" style="text-decoration: none;">
+                                <button class="detail " value="{{item.ids}}" id="btnDetail-{{item.ids}}">
+                                    <div class="detail-icon ">
+                                        
+                                    </div>
+                                    <div class="detail-texture ">Chi tiết</div>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+
+            <div class="content-footer ">
+
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src='https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js'></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <!-- <script>
+        $("#btnCancel").click(function() {
+            $('.dialog-modal').hide();
+            $('.dialog').hide();
+        });
+    </script> -->
+
+</body>
+
+</html>
